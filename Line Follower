@@ -1,0 +1,69 @@
+/*
+    Title: Sketch for the Line Follower Product
+    Created by: Vitor Seramisu
+    DATE: October 17, 2021
+
+    The following code determines how the car should react when following a black line on a white surface
+*/
+
+//defines the pins
+
+int rightsensor = A0; 
+int leftsensor = A1;
+int rightmotor1 = 9;
+int rightmotor2 = 8;
+int leftmotor1 = 7;
+int leftmotor2 = 6;
+
+void setup() {
+
+//sets the sensors as "input" and the motors as "output"
+  pinMode(A0,INPUT);
+  pinMode(A1,INPUT);
+  pinMode(9,OUTPUT);
+  pinMode(8,OUTPUT);
+  pinMode(7,OUTPUT);
+  pinMode(6,OUTPUT);
+  
+}
+
+void loop() {
+
+  /*sets lsv(left sensor value) and rsv(right sensor value) as either 
+  "HIGH" or "LOW" according to the infrared sensors*/
+  int lsv=digitalRead(A1);
+  int rsv=digitalRead(A0);
+
+  if(lsv==HIGH && rsv==HIGH)
+  {
+    digitalWrite(leftmotor1,HIGH);
+    digitalWrite(leftmotor2,LOW);
+    digitalWrite(rightmotor1,HIGH);
+    digitalWrite(rightmotor2,LOW);
+  }
+
+  if(lsv==HIGH && rsv==LOW)
+  {
+    digitalWrite(leftmotor1,HIGH);
+    digitalWrite(leftmotor2,LOW);
+    digitalWrite(rightmotor1,LOW);
+    digitalWrite(rightmotor2,LOW);
+  }
+
+  if(lsv==LOW && rsv==HIGH)
+  {
+    digitalWrite(leftmotor1,LOW);
+    digitalWrite(leftmotor2,LOW);
+    digitalWrite(rightmotor1,HIGH);
+    digitalWrite(rightmotor2,LOW);
+  }
+
+
+if(lsv==LOW && rsv==LOW)
+  {
+    digitalWrite(leftmotor1,LOW);
+    digitalWrite(leftmotor2,LOW);
+    digitalWrite(rightmotor1,LOW);
+    digitalWrite(rightmotor2,LOW);
+  }
+}
